@@ -49,7 +49,7 @@ def line_arrow(grid, bitmap_s, x1, y1, x2, y2, arrow_length, palette, pal_index)
     :param pal_index: pallet color index used in the bitmap to give the arrow line the color
      property
 
-    :return: vectorio.VectorShape object to be added to the displayio.group
+    :return: vectorio VectorShape object to be added to the displayio grouop
 
 
     **Quickstart: Importing and using line_arrow**
@@ -58,6 +58,8 @@ def line_arrow(grid, bitmap_s, x1, y1, x2, y2, arrow_length, palette, pal_index)
 
     .. code-block:: python
 
+        import displayio
+        import board
         from CircuitPython_ArrowLine import arrowline
         display = board.DISPLAY
         my_group = displayio.Group(max_size=3)
