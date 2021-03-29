@@ -30,17 +30,14 @@ __repo__ = "https://github.com/jposada202020/CircuitPython_ArrowLine.git"
 try:
     from vectorio import VectorShape, Polygon
     import displayio
-    import bitmaptools
 except ImportError:
     pass
 
 
-def line_arrow(grid, bitmap_s, x1, y1, x2, y2, arrow_length, palette, pal_index):
+def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index):
     """A Line Arrow utility.
 
     :param grid: Tilegrid object where the bitmap will be located
-    :param bitmap_s: bitmap object used to display the line and that is contain in the
-     tilegrid
 
     :param int x1: line first point x coordinate
     :param int y1: line first point x coordinate
@@ -108,11 +105,12 @@ def line_arrow(grid, bitmap_s, x1, y1, x2, y2, arrow_length, palette, pal_index)
 
     """
 
-    bitmaptools.draw_line(bitmap_s, x1, y1, x2, y2, pal_index)
+    line_draw = _angledrectangle(x1, y1, x2, y2, stroke=1)
+    my_group = displayio.Group(max_size=2)
 
     angle = math.atan2((y2 - y1), (x2 - x1))
-    x0 = arrow_length * math.cos(angle)
-    y0 = arrow_length * math.sin(angle)
+    x0 = int(math.ceil(arrow_length * math.cos(angle)))
+    y0 = int(math.ceil(arrow_length * math.sin(angle)))
 
     angle2 = math.pi / 2 - angle
     arrow_side_x = arrow_length // 2 * math.cos(angle2)
@@ -134,6 +132,22 @@ def line_arrow(grid, bitmap_s, x1, y1, x2, y2, arrow_length, palette, pal_index)
     arrow_palette.make_transparent(0)
     arrow_palette[1] = palette[pal_index]
 
+    line_base = Polygon(
+        points=[
+            (grid.x + line_draw[0][0], grid.y + line_draw[0][1]),
+            (grid.x + line_draw[1][0], grid.y + line_draw[1][1]),
+            (grid.x + line_draw[2][0], grid.y + line_draw[2][1]),
+            (grid.x + line_draw[3][0], grid.y + line_draw[3][1]),
+        ]
+    )
+    line_vector_shape = VectorShape(
+        shape=line_base,
+        pixel_shader=arrow_palette,
+        x=0,
+        y=0,
+    )
+    my_group.append(line_vector_shape)
+
     arrow = Polygon(points=[(start_x, start_y), (right_x, right_y), (left_x, left_y)])
     arrow_vector_shape = VectorShape(
         shape=arrow,
@@ -141,4 +155,39 @@ def line_arrow(grid, bitmap_s, x1, y1, x2, y2, arrow_length, palette, pal_index)
         x=0,
         y=0,
     )
-    return arrow_vector_shape
+    my_group.append(arrow_vector_shape)
+    return my_group
+
+
+def _angledrectangle(x1, y1, x2, y2, stroke=1):
+    # Code Source for this function by kmatch98 (R) 2021
+    # https://github.com/adafruit/CircuitPython_Community_Bundle/pull/63
+    if x2 - x1 == 0:
+        xdiff1 = round(stroke / 2)
+        xdiff2 = -round(stroke - xdiff1)
+        ydiff1 = 0
+        ydiff2 = 0
+
+    elif y2 - y1 == 0:
+        xdiff1 = 0
+        xdiff2 = 0
+        ydiff1 = round(stroke / 2)
+        ydiff2 = -round(stroke - ydiff1)
+
+    else:
+        c_dist = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+
+        xdiff = stroke * (y2 - y1) / c_dist
+        xdiff1 = round(xdiff / 2)
+        xdiff2 = -round(xdiff - xdiff1)
+
+        ydiff = stroke * (x2 - x1) / c_dist
+        ydiff1 = round(ydiff / 2)
+        ydiff2 = -round(ydiff - ydiff1)
+
+    return [
+        (x1 + xdiff1, y1 + ydiff2),
+        (x1 + xdiff2, y1 + ydiff1),
+        (x2 + xdiff2, y2 + ydiff1),
+        (x2 + xdiff1, y2 + ydiff2),
+    ]

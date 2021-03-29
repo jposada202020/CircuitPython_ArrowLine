@@ -28,7 +28,7 @@ screen_tilegrid = displayio.TileGrid(
 
 my_group.append(screen_tilegrid)
 
-line = line_arrow(screen_tilegrid, bitmap, 40, 90, 90, 60, 12, screen_palette, 1)
+line = line_arrow(screen_tilegrid, 40, 90, 90, 60, 12, screen_palette, 1)
 my_group.append(line)
 display.show(my_group)
 
