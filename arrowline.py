@@ -105,7 +105,6 @@ def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index):
 
     """
 
-    line_draw = _angledrectangle(x1, y1, x2, y2, stroke=1)
     my_group = displayio.Group(max_size=2)
 
     angle = math.atan2((y2 - y1), (x2 - x1))
@@ -121,6 +120,10 @@ def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index):
 
     arrow_base_x = start_x - x0
     arrow_base_y = start_y - y0
+
+    end_line_x = x2 - x0
+    end_line_y = y2 - y0
+    line_draw = _angledrectangle(x1, y1, end_line_x, end_line_y, stroke=1)
 
     right_x = math.ceil(arrow_base_x + arrow_side_x)
     right_y = math.ceil(arrow_base_y - arrow_side_y)
