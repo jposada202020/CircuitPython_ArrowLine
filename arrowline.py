@@ -8,7 +8,7 @@
 Utility function to draw arrow lines using vectorio and tilegride to display it
 
 
-* Author(s): Jose David
+* Author(s): Jose David M
 
 Implementation Notes
 --------------------
