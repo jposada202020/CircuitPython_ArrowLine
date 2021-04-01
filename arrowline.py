@@ -22,16 +22,11 @@ Implementation Notes
 # pylint: disable=too-many-locals, too-many-statements, invalid-name
 
 import math
-
+import displayio
+from vectorio import VectorShape, Polygon, Circle
 
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/jposada202020/CircuitPython_ArrowLine.git"
-
-try:
-    from vectorio import VectorShape, Polygon, Circle
-    import displayio
-except ImportError:
-    pass
 
 
 def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index, pointer="A"):
