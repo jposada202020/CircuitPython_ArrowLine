@@ -28,13 +28,13 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/jposada202020/CircuitPython_ArrowLine.git"
 
 try:
-    from vectorio import VectorShape, Polygon
+    from vectorio import VectorShape, Polygon, Circle
     import displayio
 except ImportError:
     pass
 
 
-def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index):
+def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index, pointer="A"):
     """A Line Arrow utility.
 
     :param grid: Tilegrid object where the bitmap will be located
@@ -50,6 +50,9 @@ def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index):
      same color for the arrow
     :param pal_index: pallet color index used in the bitmap to give the arrow line the color
      property
+
+    :param str pointer: point type. Two pointers could be selected ``C`` Circle or ``A`` Arrow
+     Defaults to Arrow
 
     :return: vectorio VectorShape object to be added to the displayio group
 
@@ -151,14 +154,31 @@ def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index):
     )
     my_group.append(line_vector_shape)
 
-    arrow = Polygon(points=[(start_x, start_y), (right_x, right_y), (left_x, left_y)])
-    arrow_vector_shape = VectorShape(
-        shape=arrow,
-        pixel_shader=arrow_palette,
-        x=0,
-        y=0,
-    )
-    my_group.append(arrow_vector_shape)
+    if pointer == "A":
+        arrow = Polygon(
+            points=[(start_x, start_y), (right_x, right_y), (left_x, left_y)]
+        )
+        arrow_vector_shape = VectorShape(
+            shape=arrow,
+            pixel_shader=arrow_palette,
+            x=0,
+            y=0,
+        )
+        my_group.append(arrow_vector_shape)
+
+    elif pointer == "C":
+        circle_center_x = grid.x + line_draw[2][0]
+        circle_center_y = grid.y + line_draw[2][1]
+
+        circle_ending = Circle(3)
+        circle_vector_shape = VectorShape(
+            shape=circle_ending,
+            pixel_shader=arrow_palette,
+            x=circle_center_x,
+            y=circle_center_y,
+        )
+        my_group.append(circle_vector_shape)
+
     return my_group
 
 
