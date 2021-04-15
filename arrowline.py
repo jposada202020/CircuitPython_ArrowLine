@@ -59,7 +59,7 @@ def line_arrow(
      property
     :param int line_width: the width of the arrow's line, in pixels (default = 1)
 
-    :param str pointer: point type. Two pointers could be selected ``C`` Circle or ``A`` Arrow
+    :param str pointer: point type. Two pointers could be selected `C` Circle or `A` Arrow
      Defaults to Arrow
 
     :return: vectorio VectorShape object to be added to the displayio group
@@ -67,52 +67,52 @@ def line_arrow(
 
     **Quickstart: Importing and using line_arrow**
 
-    Here is one way of importing the `line_arrow` function so you can use:
+        Here is one way of importing the `line_arrow` function so you can use:
 
-    .. code-block:: python
+        .. code-block:: python
 
-        import displayio
-        import board
-        from CircuitPython_ArrowLine import arrowline
-        display = board.DISPLAY
-        my_group = displayio.Group(max_size=3)
-        bitmap = displayio.Bitmap(100, 100, 5)
-        screen_palette = displayio.Palette(3)
-        screen_palette[1] = 0x00AA00
-        screen_tilegrid = displayio.TileGrid(
-            bitmap,
-            pixel_shader=screen_palette,
-            x=50,
-            y=50,
-        )
-        my_group.append(screen_tilegrid)
+            import displayio
+            import board
+            from CircuitPython_ArrowLine import arrowline
+            display = board.DISPLAY
+            my_group = displayio.Group(max_size=3)
+            bitmap = displayio.Bitmap(100, 100, 5)
+            screen_palette = displayio.Palette(3)
+            screen_palette[1] = 0x00AA00
+            screen_tilegrid = displayio.TileGrid(
+                bitmap,
+                pixel_shader=screen_palette,
+                x=50,
+                y=50,
+            )
+            my_group.append(screen_tilegrid)
 
-    Now you can create an arrowline starting at pixel position x=40, y=90 using:
+        Now you can create an arrowline starting at pixel position x=40, y=90 using:
 
-    .. code-block:: python
+        .. code-block:: python
 
-        my_line = line_arrow(screen_tilegrid, bitmap, 40, 90, 90, 60, 12, screen_palette, 1)
+            my_line = line_arrow(screen_tilegrid, bitmap, 40, 90, 90, 60, 12, screen_palette, 1)
 
-    Once you setup your display, you can now add ``my_line`` to your display using:
+        Once you setup your display, you can now add ``my_line`` to your display using:
 
-    .. code-block:: python
+        .. code-block:: python
 
-        my_group.append(line)
-        display.show(my_group)
+            my_group.append(line)
+            display.show(my_group)
 
 
     **Summary: arrowline Features and input variables**
 
-    The `arrowline` widget has some options for controlling its position, visible appearance,
-    and scale through a collection of input variables:
+        The `arrowline` widget has some options for controlling its position, visible appearance,
+        and scale through a collection of input variables:
 
-        - **position**: ``x1``, ``y1``, ``x2``, ``y2``
+            - **position**: ``x1``, ``y1``, ``x2``, ``y2``
 
-        - **size**: line length is given by two points. ``arrow_length``
+            - **size**: line length is given by two points. ``arrow_length``
 
-        - **color**: ``pal_index``
+            - **color**: ``pal_index``
 
-        - **background color**: ``background_color``
+            - **background color**: ``background_color``
 
     """
 
