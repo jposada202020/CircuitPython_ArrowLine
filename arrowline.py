@@ -29,10 +29,22 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/jposada202020/CircuitPython_ArrowLine.git"
 
 
-def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index, pointer="A"):
+def line_arrow(
+    grid=None,
+    x1=0,
+    y1=0,
+    x2=10,
+    y2=10,
+    arrow_length=10,
+    palette=None,
+    pal_index=1,
+    line_width=1,
+    pointer="A",
+):
     """A Line Arrow utility.
 
-    :param grid: Tilegrid object where the bitmap will be located
+    :param grid: Tilegrid object where the bitmap will be located, set to None for
+     arbitrary placement of the `line_arrow` (default = None)
 
     :param int x1: line first point x coordinate
     :param int y1: line first point x coordinate
@@ -103,6 +115,9 @@ def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index, pointer="
 
     """
 
+    if palette is None:
+        raise "Must provide a valid palette"
+
     my_group = displayio.Group(max_size=2)
 
     angle = math.atan2((y2 - y1), (x2 - x1))
@@ -113,15 +128,22 @@ def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index, pointer="
     arrow_side_x = arrow_length // 2 * math.cos(angle2)
     arrow_side_y = arrow_length // 2 * math.sin(angle2)
 
-    start_x = grid.x + x2
-    start_y = grid.y + y2
+    if grid is not None:
+        x_reference = grid.x
+        y_reference = grid.y
+    else:
+        x_reference = 0
+        y_reference = 0
+
+    start_x = x_reference + x2
+    start_y = y_reference + y2
 
     arrow_base_x = start_x - x0
     arrow_base_y = start_y - y0
 
     end_line_x = x2 - x0
     end_line_y = y2 - y0
-    line_draw = _angledrectangle(x1, y1, end_line_x, end_line_y, stroke=1)
+    line_draw = _angledrectangle(x1, y1, end_line_x, end_line_y, stroke=line_width)
 
     right_x = math.ceil(arrow_base_x + arrow_side_x)
     right_y = math.ceil(arrow_base_y - arrow_side_y)
@@ -135,10 +157,10 @@ def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index, pointer="
 
     line_base = Polygon(
         points=[
-            (grid.x + line_draw[0][0], grid.y + line_draw[0][1]),
-            (grid.x + line_draw[1][0], grid.y + line_draw[1][1]),
-            (grid.x + line_draw[2][0], grid.y + line_draw[2][1]),
-            (grid.x + line_draw[3][0], grid.y + line_draw[3][1]),
+            (x_reference + line_draw[0][0], y_reference + line_draw[0][1]),
+            (x_reference + line_draw[1][0], y_reference + line_draw[1][1]),
+            (x_reference + line_draw[2][0], y_reference + line_draw[2][1]),
+            (x_reference + line_draw[3][0], y_reference + line_draw[3][1]),
         ]
     )
     line_vector_shape = VectorShape(
@@ -162,8 +184,8 @@ def line_arrow(grid, x1, y1, x2, y2, arrow_length, palette, pal_index, pointer="
         my_group.append(arrow_vector_shape)
 
     elif pointer == "C":
-        circle_center_x = grid.x + line_draw[2][0]
-        circle_center_y = grid.y + line_draw[2][1]
+        circle_center_x = x_reference + line_draw[2][0]
+        circle_center_y = y_reference + line_draw[2][1]
 
         circle_ending = Circle(3)
         circle_vector_shape = VectorShape(
