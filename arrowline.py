@@ -59,7 +59,7 @@ def line_arrow(
      property
     :param int line_width: the width of the arrow's line, in pixels (default = 1)
 
-    :param str pointer: point type. Two pointers could be selected `C` Circle or `A` Arrow
+    :param str pointer: point type. Two pointers could be selected ``C`` Circle or `A`` Arrow
      Defaults to Arrow
 
     :return: vectorio VectorShape object to be added to the displayio group
