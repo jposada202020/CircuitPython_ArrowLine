@@ -57,6 +57,7 @@ def line_arrow(
      same color for the arrow
     :param pal_index: pallet color index used in the bitmap to give the arrow line the color
      property
+    :param int line_width: the width of the arrow's line, in pixels (default = 1)
 
     :param str pointer: point type. Two pointers could be selected ``C`` Circle or ``A`` Arrow
      Defaults to Arrow
