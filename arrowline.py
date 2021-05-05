@@ -53,16 +53,16 @@ def line_arrow(
 
     :param int arrow_length: arrow length in pixels. Arrow width is half of the length
 
-    :param palette: palette object used to display the bitmap. This is used to utilize the
+    :param `displayio.Palette` palette: palette object used to display the bitmap. This is used to utilize the
      same color for the arrow
-    :param pal_index: pallet color index used in the bitmap to give the arrow line the color
+    :param int pal_index: pallet color index used in the bitmap to give the arrow line the color
      property
     :param int line_width: the width of the arrow's line, in pixels (default = 1)
 
-    :param str pointer: point type. Two pointers could be selected ``C`` Circle or ``A`` Arrow
+    :param str pointer: point type. Two pointers could be selected :const:`C` Circle or :const:`A` Arrow
      Defaults to Arrow
 
-    :return: vectorio VectorShape object to be added to the displayio group
+    :return: `vectorio` VectorShape object to be added to the displayio group
 
 
     **Quickstart: Importing and using line_arrow**
@@ -73,7 +73,7 @@ def line_arrow(
 
             import displayio
             import board
-            from CircuitPython_ArrowLine import arrowline
+            from CircuitPython_ArrowLine import line_arrow
             display = board.DISPLAY
             my_group = displayio.Group(max_size=3)
             bitmap = displayio.Bitmap(100, 100, 5)
@@ -101,23 +101,23 @@ def line_arrow(
             display.show(my_group)
 
 
-    **Summary: arrowline Features and input variables**
+    **Summary: `arrowline Features and input variables**
 
-        The `arrowline` widget has some options for controlling its position, visible appearance,
+        The `line_arrow` widget has some options for controlling its position, visible appearance,
         and scale through a collection of input variables:
 
-            - **position**: ``x1``, ``y1``, ``x2``, ``y2``
+            - **position**: :const:`x1`, :const:`y1`, :const:`x2`, :const:`y2`
 
-            - **size**: line length is given by two points. ``arrow_length``
+            - **size**: line length is given by two points. :const:`arrow_length`
 
-            - **color**: ``pal_index``
+            - **color**: :const:`pal_index`
 
-            - **background color**: ``background_color``
+            - **background color**: :const:`background_color` gfdgfd
 
     """
 
     if palette is None:
-        raise "Must provide a valid palette"
+        raise Exception("Must provide a valid palette")
 
     my_group = displayio.Group(max_size=2)
 
