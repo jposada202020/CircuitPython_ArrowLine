@@ -53,14 +53,14 @@ def line_arrow(
 
     :param int arrow_length: arrow length in pixels. Arrow width is half of the length
 
-    :param `displayio.Palette` palette: palette object used to display the bitmap. This is used to utilize the
-     same color for the arrow
+    :param `displayio.Palette` palette: palette object used to display the bitmap.
+     This is used to utilize the same color for the arrow
     :param int pal_index: pallet color index used in the bitmap to give the arrow line the color
      property
     :param int line_width: the width of the arrow's line, in pixels (default = 1)
 
-    :param str pointer: point type. Two pointers could be selected :const:`C` Circle or :const:`A` Arrow
-     Defaults to Arrow
+    :param str pointer: point type. Two pointers could be selected :const:`C` Circle
+     or :const:`A` Arrow. Defaults to Arrow
 
     :return: `vectorio` VectorShape object to be added to the displayio group
 
