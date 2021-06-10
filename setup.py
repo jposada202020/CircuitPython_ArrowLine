@@ -51,5 +51,5 @@ setup(
     keywords="adafruit blinka circuitpython micropython arrow line displayio",
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    packages=["arrowline"],
+    py_modules=["arrowline"],
 )
