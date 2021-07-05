@@ -119,7 +119,7 @@ def line_arrow(
     if palette is None:
         raise Exception("Must provide a valid palette")
 
-    my_group = displayio.Group(max_size=2)
+    my_group = displayio.Group()
 
     angle = math.atan2((y2 - y1), (x2 - x1))
     x0 = int(math.ceil(arrow_length * math.cos(angle)))

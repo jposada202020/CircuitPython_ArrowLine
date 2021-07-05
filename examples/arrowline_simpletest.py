@@ -8,12 +8,12 @@ This is a simple example of the use of the arrowline function.
 
 import displayio
 import board
-from CircuitPython_ArrowLine.arrowline import line_arrow
+from arrowline import line_arrow
 
 
 display = board.DISPLAY
 
-my_group = displayio.Group(max_size=3)
+my_group = displayio.Group()
 
 bitmap = displayio.Bitmap(100, 100, 5)
 

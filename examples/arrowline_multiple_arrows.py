@@ -9,12 +9,12 @@ Multiple arrows and including a Circle Pointer
 
 import displayio
 import board
-from CircuitPython_ArrowLine.arrowline import line_arrow
+from arrowline import line_arrow
 
 
 display = board.DISPLAY
 
-my_group = displayio.Group(max_size=3)
+my_group = displayio.Group()
 
 bitmap = displayio.Bitmap(320, 240, 5)
 
