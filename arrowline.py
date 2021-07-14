@@ -75,7 +75,7 @@ def line_arrow(
             import board
             from CircuitPython_ArrowLine import line_arrow
             display = board.DISPLAY
-            my_group = displayio.Group(max_size=3)
+            my_group = displayio.Group()
             bitmap = displayio.Bitmap(100, 100, 5)
             screen_palette = displayio.Palette(3)
             screen_palette[1] = 0x00AA00
