@@ -23,7 +23,7 @@ Implementation Notes
 
 import math
 import displayio
-from vectorio import VectorShape, Polygon, Circle
+from vectorio import Polygon, Circle
 
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/jposada202020/CircuitPython_ArrowLine.git"
@@ -54,7 +54,7 @@ def line_arrow(
     :param int arrow_length: arrow length in pixels. Arrow width is half of the length
 
     :param `displayio.Palette` palette: palette object used to display the bitmap.
-     This is used to utilize the same color for the arrow
+     This is used to have the same color for the arrow
     :param int pal_index: pallet color index used in the bitmap to give the arrow line the color
      property
     :param int line_width: the width of the arrow's line, in pixels (default = 1)
@@ -62,7 +62,7 @@ def line_arrow(
     :param str pointer: point type. Two pointers could be selected :const:`C` Circle
      or :const:`A` Arrow. Defaults to Arrow
 
-    :return: `vectorio` VectorShape object to be added to the displayio group
+    :return: `displayio.Group`
 
 
     **Quickstart: Importing and using line_arrow**
@@ -101,7 +101,7 @@ def line_arrow(
             display.show(my_group)
 
 
-    **Summary: `arrowline Features and input variables**
+    **Summary: `arrowline` Features and input variables**
 
         The `line_arrow` widget has some options for controlling its position, visible appearance,
         and scale through a collection of input variables:
@@ -112,7 +112,7 @@ def line_arrow(
 
             - **color**: :const:`pal_index`
 
-            - **background color**: :const:`background_color` gfdgfd
+            - **background color**: :const:`background_color`
 
     """
 
@@ -157,45 +157,44 @@ def line_arrow(
     arrow_palette[1] = palette[pal_index]
 
     line_base = Polygon(
+        pixel_shader=arrow_palette,
         points=[
             (x_reference + line_draw[0][0], y_reference + line_draw[0][1]),
             (x_reference + line_draw[1][0], y_reference + line_draw[1][1]),
             (x_reference + line_draw[2][0], y_reference + line_draw[2][1]),
             (x_reference + line_draw[3][0], y_reference + line_draw[3][1]),
-        ]
-    )
-    line_vector_shape = VectorShape(
-        shape=line_base,
-        pixel_shader=arrow_palette,
+        ],
         x=0,
         y=0,
+        color_index=pal_index,
     )
-    my_group.append(line_vector_shape)
+
+    my_group.append(line_base)
 
     if pointer == "A":
         arrow = Polygon(
-            points=[(start_x, start_y), (right_x, right_y), (left_x, left_y)]
-        )
-        arrow_vector_shape = VectorShape(
-            shape=arrow,
             pixel_shader=arrow_palette,
+            points=[(start_x, start_y), (right_x, right_y), (left_x, left_y)],
             x=0,
             y=0,
+            color_index=pal_index,
         )
-        my_group.append(arrow_vector_shape)
+
+        my_group.append(arrow)
 
     elif pointer == "C":
         circle_center_x = x_reference + line_draw[2][0]
         circle_center_y = y_reference + line_draw[2][1]
 
-        circle_ending = Circle(3)
-        circle_vector_shape = VectorShape(
-            shape=circle_ending,
+        circle_ending = Circle(
             pixel_shader=arrow_palette,
+            radius=3,
             x=circle_center_x,
             y=circle_center_y,
+            color_index=pal_index,
         )
-        my_group.append(circle_vector_shape)
+
+        my_group.append(circle_ending)
 
     return my_group
 
