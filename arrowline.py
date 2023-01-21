@@ -62,7 +62,7 @@ def line_arrow(
     :param str pointer: point type. Two pointers could be selected :const:`C` Circle
      or :const:`A` Arrow. Defaults to Arrow
 
-    :return: `vectorio.Group`
+    :return: `displayio.Group`
 
 
     **Quickstart: Importing and using line_arrow**
