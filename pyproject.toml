@@ -11,7 +11,7 @@ requires = [
 
 [project]
 name = "circuitpython-ArrowLine"
-description = "CircuitPython library to draw Arrolines."
+description = "CircuitPython library to draw Arrowlines."
 version = "0.0.0+auto.0"
 readme = "README.rst"
 authors = [
