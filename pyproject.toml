@@ -17,7 +17,7 @@ readme = "README.rst"
 authors = [
     {name = "Jose D. Montoya", email = "arrowline@mailmeto.mozmail.com"}
 ]
-urls = {Homepage = "https://github.com/adafruit/Adafruit_CircuitPython_LIS3DH"}
+urls = {Homepage = "https://github.com/jposada202020/CircuitPython_ArrowLine.git"}
 keywords = [
     "hardware",
     "micropython",
