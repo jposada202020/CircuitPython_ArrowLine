@@ -25,19 +25,3 @@ Table of Contents
     :caption: See them in Action
 
     Showcased in the Memory Saving Learning Guide <https://learn.adafruit.com/Memory-saving-tips-for-CircuitPython>
-
-.. toctree::
-    :caption: Other Links
-
-    Download <https://github.com/jposada202020/CircuitPython_ArrowLine/releases/latest>
-    CircuitPython Reference Documentation <https://circuitpython.readthedocs.io>
-    Discord Chat <https://adafru.it/discord>
-    Adafruit Learning System <https://learn.adafruit.com>
-    Adafruit Store <https://www.adafruit.com>
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

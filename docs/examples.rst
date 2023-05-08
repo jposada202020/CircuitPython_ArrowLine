@@ -11,7 +11,17 @@ Ensure your device works with this simple test.
 Multiple Lines Example
 ----------------------
 
-Ensure your device works with this simple test.
+Showing multiple lines in a displaay
+
+.. literalinclude:: ../examples/arrowline_multiple_arrows.py
+    :caption: examples/arrowline_multiple_arrows.py
+    :linenos:
+    :lines: 10-
+
+Dotted Lines Example
+----------------------
+
+showing multiple dotted lines in a display
 
 .. literalinclude:: ../examples/arrowline_multiple_arrows.py
     :caption: examples/arrowline_multiple_arrows.py
