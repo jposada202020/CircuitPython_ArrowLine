@@ -302,7 +302,7 @@ class Line:
                     ],
                     x=0,
                     y=0,
-                    color_index=self.pal_index,
+                    color_index=1,
                 )
 
                 self.my_group.append(line_base)
