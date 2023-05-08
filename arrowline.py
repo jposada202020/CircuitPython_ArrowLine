@@ -129,7 +129,7 @@ class Line:
         pal_index: int = 1,
         line_width: int = 1,
         solid_line: bool = True,
-        line_lenght: int = 5,
+        line_length: int = 5,
         line_space: int = 5,
         pointer: str = "A",
     ):
@@ -142,7 +142,7 @@ class Line:
         self._arrow_length = arrow_length
         self.line_width = line_width
 
-        self.line_length = line_lenght
+        self.line_length = line_length
         self.line_space = line_space
         self.pal_index = pal_index
         self.my_group = displayio.Group()
