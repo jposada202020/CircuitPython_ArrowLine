@@ -55,9 +55,8 @@ class Line:
 
     :param int line_width: the width of the arrow's line, in pixels (default = 1)
     :param bool solid_line: indicates if the line is a solid line. Defaults to `True`
-    :param int line_length: Length in pixels of the line. It is recommended
-     due to floating point calculations that this value stays at 5. you could try others
-     combinations of line_lenght and line_space. Defaults to 5.
+    :param int line_length: Length in pixels of the line.
+     combinations of line_length and line_space. Defaults to 5.
     :param int line_space: Line space in pixels. Defaults to 5
 
     :param str pointer: point type. Two pointers could be selected :const:`C` Circle
@@ -254,61 +253,58 @@ class Line:
         self.my_group.append(line_base)
 
     def _dotted_line(self):
-        end_line_xx = self.x1 + int(math.ceil(self.line_length * math.cos(self._angle)))
-        end_line_yy = self.y1 + int(math.ceil(self.line_length * math.sin(self._angle)))
-        xd1 = self.x1
-        yd1 = self.y1
+        distance = math.sqrt((self.x2 - self.x1) ** 2 + (self.y2 - self.y1) ** 2)
 
-        while True:
-            if self.x1 < self.x2:
-                if xd1 > self._arrow_base_x:
-                    break
-                if self.y1 < self.y2:
-                    if yd1 > self._arrow_base_y:
-                        break
-            if self.x1 > self.x2:
-                if xd1 < self._arrow_base_x:
-                    break
-                if self.y1 < self.y2:
-                    if yd1 > self._arrow_base_y:
-                        break
-
-            _line = _angledrectangle(
-                xd1, yd1, end_line_xx, end_line_yy, stroke=self.line_width
+        suma = self.line_length
+        puntos = []
+        puntos.append((self.x2, self.y2))
+        while suma < distance:
+            puntos.append(
+                (
+                    self.x2 - int(math.ceil(suma * math.cos(self._angle))),
+                    self.y2 - int(math.ceil(suma * math.sin(self._angle))),
+                )
             )
-            # print("line draw", _line)
+            suma = suma + self.line_length + self.line_space
 
-            xd1 = int(math.ceil(self.line_space * math.cos(self._angle))) + end_line_xx
-            yd1 = int(math.ceil(self.line_space * math.sin(self._angle))) + end_line_yy
-            end_line_xx = xd1 + int(self.line_length * math.cos(self._angle))
-            end_line_yy = yd1 + int(self.line_length * math.sin(self._angle))
+        for i, ele in enumerate(puntos):
 
-            line_base = Polygon(
-                pixel_shader=self.arrow_palette,
-                points=[
-                    (
-                        self.x_reference + _line[0][0],
-                        self.y_reference + _line[0][1],
-                    ),
-                    (
-                        self.x_reference + _line[1][0],
-                        self.y_reference + _line[1][1],
-                    ),
-                    (
-                        self.x_reference + _line[2][0],
-                        self.y_reference + _line[2][1],
-                    ),
-                    (
-                        self.x_reference + _line[3][0],
-                        self.y_reference + _line[3][1],
-                    ),
-                ],
-                x=0,
-                y=0,
-                color_index=self.pal_index,
-            )
+            if i == 0:
+                continue
+            if i % 2 == 0:
+                _line = _angledrectangle(
+                    ele[0],
+                    ele[1],
+                    puntos[i - 1][0],
+                    puntos[i - 1][1],
+                    stroke=self.line_width,
+                )
+                line_base = Polygon(
+                    pixel_shader=self.arrow_palette,
+                    points=[
+                        (
+                            self.x_reference + _line[0][0],
+                            self.y_reference + _line[0][1],
+                        ),
+                        (
+                            self.x_reference + _line[1][0],
+                            self.y_reference + _line[1][1],
+                        ),
+                        (
+                            self.x_reference + _line[2][0],
+                            self.y_reference + _line[2][1],
+                        ),
+                        (
+                            self.x_reference + _line[3][0],
+                            self.y_reference + _line[3][1],
+                        ),
+                    ],
+                    x=0,
+                    y=0,
+                    color_index=self.pal_index,
+                )
 
-            self.my_group.append(line_base)
+                self.my_group.append(line_base)
 
 
 def _angledrectangle(x1, y1, x2, y2, stroke=1):

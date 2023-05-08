@@ -38,7 +38,7 @@ a = Line(
     screen_palette,
     1,
     solid_line=False,
-    line_lenght=5,
+    line_length=5,
     line_space=5,
 )
 my_group.append(a.draw)
@@ -52,7 +52,7 @@ b = Line(
     screen_palette,
     1,
     solid_line=False,
-    line_lenght=5,
+    line_length=5,
     line_space=5,
 )
 my_group.append(b.draw)
@@ -66,7 +66,7 @@ c = Line(
     screen_palette,
     1,
     solid_line=False,
-    line_lenght=5,
+    line_length=5,
     line_space=5,
 )
 my_group.append(c.draw)
@@ -80,7 +80,7 @@ d = Line(
     screen_palette,
     1,
     solid_line=False,
-    line_lenght=5,
+    line_length=5,
     line_space=5,
 )
 my_group.append(d.draw)
