@@ -143,12 +143,12 @@ class Line:
 
         self.line_length = line_length
         self.line_space = line_space
-        self.pal_index = pal_index
+
         self.my_group = displayio.Group()
 
         self.arrow_palette = displayio.Palette(2)
-        self.arrow_palette.make_transparent(0)
-        self.arrow_palette[1] = palette[self.pal_index]
+
+        self.arrow_palette[1] = palette[pal_index]
 
         if grid is not None:
             self.x_reference = grid.x
@@ -193,7 +193,7 @@ class Line:
                 points=[(start_x, start_y), (right_x, right_y), (left_x, left_y)],
                 x=0,
                 y=0,
-                color_index=self.pal_index,
+                color_index=1,
             )
 
             self.my_group.append(arrow)
@@ -207,7 +207,7 @@ class Line:
                 radius=3,
                 x=circle_center_x,
                 y=circle_center_y,
-                color_index=self.pal_index,
+                color_index=1,
             )
 
             self.my_group.append(circle_ending)
@@ -248,11 +248,12 @@ class Line:
             ],
             x=0,
             y=0,
-            color_index=self.pal_index,
+            color_index=1,
         )
         self.my_group.append(line_base)
 
     def _dotted_line(self):
+
         distance = math.sqrt((self.x2 - self.x1) ** 2 + (self.y2 - self.y1) ** 2)
 
         suma = self.line_length
@@ -305,7 +306,6 @@ class Line:
                 )
 
                 self.my_group.append(line_base)
-
 
 def _angledrectangle(x1, y1, x2, y2, stroke=1):
     # Code Source for this function by kmatch98 (R) 2021
