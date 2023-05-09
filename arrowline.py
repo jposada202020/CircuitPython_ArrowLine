@@ -307,6 +307,7 @@ class Line:
 
                 self.my_group.append(line_base)
 
+
 def _angledrectangle(x1, y1, x2, y2, stroke=1):
     # Code Source for this function by kmatch98 (R) 2021
     # https://github.com/adafruit/CircuitPython_Community_Bundle/pull/63

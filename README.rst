@@ -28,6 +28,13 @@ Utility function to draw arrow lines using vectorio
 
 .. image:: https://user-images.githubusercontent.com/34255413/113015260-5f288d80-914b-11eb-9a68-5283612b9bae.png
 
+New
+===
+Now you can make dotted lines
+
+.. image:: https://github.com/jposada202020/CircuitPython_Arrowline/blob/master/docs/arrowline_readme.png
+
+
 
 Dependencies
 =============

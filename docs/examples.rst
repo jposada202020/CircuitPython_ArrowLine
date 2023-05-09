@@ -27,3 +27,13 @@ showing multiple dotted lines in a display
     :caption: examples/arrowline_multiple_arrows.py
     :linenos:
     :lines: 10-
+
+Readme Example
+----------------------
+
+showing multiple dotted lines in a display
+
+.. literalinclude:: ../examples/arrowline_multiple_arrows.py
+    :caption: examples/arrowline_multiple_arrows.py
+    :linenos:
+    :lines: 10-
