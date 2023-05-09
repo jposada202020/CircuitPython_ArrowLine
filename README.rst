@@ -32,9 +32,9 @@ New
 ===
 Now you can make dotted lines
 
-.. image:: https://github.com/jposada202020/CircuitPython_Arrowline/blob/master/docs/arrowline_readme.png
+.. image:: https://github.com/jposada202020/CircuitPython_Arrowline/blob/main/docs/arrowline_readme.png
 
-
+Take a look at the examples folder
 
 Dependencies
 =============
