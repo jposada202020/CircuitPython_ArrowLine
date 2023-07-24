@@ -18,9 +18,6 @@ Implementation Notes
 
 """
 
-# pylint: disable=too-many-lines, too-many-instance-attributes, too-many-arguments
-# pylint: disable=too-many-locals, too-many-statements, invalid-name
-
 import math
 import displayio
 from vectorio import Polygon, Circle
@@ -131,9 +128,9 @@ class Line:
         line_length: int = 5,
         line_space: int = 5,
         pointer: str = "A",
-    ):
+    ) -> None:
         if palette is None:
-            raise Exception("Must provide a valid palette")
+            raise ValueError("Must provide a valid palette")
         self.x1 = x1
         self.y1 = y1
         self.x2 = x2
@@ -218,14 +215,13 @@ class Line:
             self._dotted_line()
 
     @property
-    def draw(self):
+    def draw(self) -> None:
         """
         Return the line object
         """
         return self.my_group
 
-    def _solid_line(self):
-
+    def _solid_line(self) -> None:
         line_base = Polygon(
             pixel_shader=self.arrow_palette,
             points=[
@@ -252,8 +248,7 @@ class Line:
         )
         self.my_group.append(line_base)
 
-    def _dotted_line(self):
-
+    def _dotted_line(self) -> None:
         distance = math.sqrt((self.x2 - self.x1) ** 2 + (self.y2 - self.y1) ** 2)
 
         suma = self.line_length
@@ -269,7 +264,6 @@ class Line:
             suma = suma + self.line_length + self.line_space
 
         for i, ele in enumerate(puntos):
-
             if i == 0:
                 continue
             if i % 2 == 0:

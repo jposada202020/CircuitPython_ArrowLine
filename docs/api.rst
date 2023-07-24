@@ -1,5 +1,5 @@
-Arrowline Library
-==================
+CircuitPython Arrowline Library
+================================
 
 
 .. automodule:: arrowline

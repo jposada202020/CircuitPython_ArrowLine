@@ -1,13 +1,9 @@
-# SPDX-FileCopyrightText: 2022 Alec Delaney for Adafruit Industries
+# SPDX-FileCopyrightText: 2023 Jose D. Montoya
 #
 # SPDX-License-Identifier: MIT
 
 [build-system]
-requires = [
-    "setuptools",
-    "wheel",
-    "setuptools-scm",
-]
+requires = ["setuptools", "wheel", "setuptools-scm"]
 
 [project]
 name = "circuitpython-ArrowLine"
@@ -15,15 +11,11 @@ description = "CircuitPython library to draw Arrowlines."
 version = "0.0.0+auto.0"
 readme = "README.rst"
 authors = [
-    {name = "Jose D. Montoya", email = "arrowline@mailmeto.mozmail.com"}
+    { name = "Jose D. Montoya", email = "arrowline@mailmeto.mozmail.com" },
 ]
-urls = {Homepage = "https://github.com/jposada202020/CircuitPython_ArrowLine.git"}
-keywords = [
-    "hardware",
-    "micropython",
-    "circuitpython",
-]
-license = {text = "MIT"}
+urls = { Homepage = "https://github.com/jposada202020/CircuitPython_ArrowLine.git" }
+keywords = ["hardware", "arrowline", "arrows", "circuitpython"]
+license = { text = "MIT" }
 classifiers = [
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Libraries",
@@ -38,5 +30,5 @@ dynamic = ["dependencies", "optional-dependencies"]
 py-modules = ["arrowline"]
 
 [tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt"]}
-optional-dependencies = {optional = {file = ["optional_requirements.txt"]}}
+dependencies = { file = ["requirements.txt"] }
+optional-dependencies = { optional = { file = ["optional_requirements.txt"] } }
